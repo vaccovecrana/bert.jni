@@ -1,10 +1,17 @@
 compile:
-	$(CC) \
-		-I/usr/lib/gcc/x86_64-linux-gnu/10/include \
-		-I/home/jjzazuet/Applications/zulu11.52.13-ca-jdk11.0.13-linux_x64/include \
-		-I/home/jjzazuet/Applications/zulu11.52.13-ca-jdk11.0.13-linux_x64/include/linux \
-		-Wall -c -o rwkv_context.o rwkv_context.c
-	$(CC) -L. -lrwkv -shared -o librwkv_context.so rwkv_context.o
+	zig cc \
+		-Wall -Wextra -Wpedantic -Wshadow -Wcast-qual -Wstrict-prototypes \
+		-Wpointer-arith -Wdouble-promotion -Wno-unused-function -Werror=vla \
+		-mavx -mavx2 -mfma -mf16c -msse3 -O3 -DNDEBUG -std=gnu11 \
+		-o ggml.o -c ggml.c
+	zig c++ \
+		-I/usr/lib/gcc/x86_64-linux-gnu/12/include -Wall -fpic -c -o bert.o bert.cpp
+	zig cc \
+		-I/usr/lib/gcc/x86_64-linux-gnu/12/include \
+		-I/home/jjzazuet/Applications/zulu17.42.21-ca-crac-jdk17.0.7-linux_x64/include \
+		-I/home/jjzazuet/Applications/zulu17.42.21-ca-crac-jdk17.0.7-linux_x64/include/linux \
+		-std=gnu11 -Wall -c -o bert-jni.o bert-jni.c
+	zig cc ggml.o bert.o bert-jni.o -shared -lm -lc -lstdc++ -o libbert-jni.so
 
 clean:
-	rm -rfv rwkv_context.o librwkv_context.so
+	rm -rfv ggml.o bert.o bert-jni.o libbert-jni.so

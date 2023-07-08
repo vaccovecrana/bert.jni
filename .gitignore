@@ -5,6 +5,9 @@
 .gradle/
 build/
 bin/
+
+*.o
+*.bin
 hs_err_pid*.log
 
 gradle/
