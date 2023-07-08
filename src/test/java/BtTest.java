@@ -16,7 +16,7 @@ import static j8spec.J8Spec.*;
 @RunWith(J8SpecRunner.class)
 public class BtTest {
 
-  public static final File modelPath = new File("/home/jjzazuet/code/bert.cpp/models/all-MiniLM-L6-v2/ggml-model-f16.bin");
+  public static final File modelPath = new File("/home/jjzazuet/code/bert.cpp/models/multi-qa-MiniLM-L6-cos-v1/ggml-model-f16.bin");
 
   public static float cosineSimilarity(float[] vectorA, float[] vectorB) {
     float dotProduct = 0.0f;
@@ -53,7 +53,7 @@ public class BtTest {
           var results = recs.stream()
               .map(rec -> rec.withSimilarity(cosineSimilarity(query, rec.embedding)))
               .sorted(Comparator.comparing(rec -> -rec.similarity))
-              .limit(10)
+              .limit(25)
               .collect(Collectors.toList());
           System.out.printf("====> %s <====%n", qText);
           for (var rec : results) {

@@ -2,7 +2,7 @@ plugins { id("io.vacco.oss.gitflow") version "0.9.8" }
 
 apply(plugin = "io.vacco.oss.gitflow")
 group = "io.vacco.bert"
-version = "cd2170d" // sync with https://github.com/skeskinen/bert.cpp/commit/cd2170d
+version = "0.1.0-cd2170d"
 
 configure<io.vacco.oss.gitflow.GsPluginProfileExtension> {
   addClasspathHell()
