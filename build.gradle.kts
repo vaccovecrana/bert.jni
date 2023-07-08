@@ -14,10 +14,6 @@ configure<io.vacco.cphell.ChPluginExtension> {
   resourceExclusions.add("module-info.class")
 }
 
-dependencies {
-  testImplementation("io.vacco.shax:shax:1.7.30.0.0.7")
-}
-
 tasks.withType<Test> {
   minHeapSize = "512m"
   maxHeapSize = "16384m"
