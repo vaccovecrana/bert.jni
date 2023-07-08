@@ -1,0 +1,11 @@
+.DS_Store
+.vscode/
+
+.idea/
+.gradle/
+build/
+bin/
+hs_err_pid*.log
+
+gradle/
+gradlew*
