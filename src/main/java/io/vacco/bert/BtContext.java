@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.util.Arrays;
 
+/** This class is NOT thread safe. */
 public class BtContext implements Closeable {
 
   private final int nThreads;
