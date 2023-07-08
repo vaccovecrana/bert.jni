@@ -458,7 +458,7 @@ struct bert_ctx * bert_load_from_file(const char *fname)
         model_mem_req += n_layer * (n_intermediate * ggml_type_sizef(GGML_TYPE_F32)); // ff_i_b
         model_mem_req += n_layer * (n_embd * ggml_type_sizef(GGML_TYPE_F32)); // ff_o_b
 
-        model_mem_req += (5 + 16 * n_layer) * 256; // object overhead
+        model_mem_req += (5 + 16 * n_layer) * 512; // object overhead, TODO code smell, memory max size should be a parameter.
 
         printf("%s: ggml ctx size = %6.2f MB\n", __func__, model_mem_req / (1024.0 * 1024.0));
     }
