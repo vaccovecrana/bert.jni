@@ -27,3 +27,6 @@ The following `bert.cpp` models appear to work correctly when loading their `f16
 - Only Linux is supported at the moment. PRs for other Operating systems are welcome and encouraged.
 - A custom build for `ggml`, `bert.cpp` and the JNI bindings is needed until [this issue](https://github.com/skeskinen/bert.cpp/issues/17) gets resolved.
 - Not all converted GGML models may load successfully. Please open an issue if a specific model crashes.
+
+- Initial release.
+- Built with `bert.cpp` at commit [cd2170](https://github.com/skeskinen/bert.cpp/commit/cd2170).
