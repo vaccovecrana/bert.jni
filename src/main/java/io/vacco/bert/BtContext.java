@@ -4,7 +4,11 @@ import java.io.Closeable;
 import java.io.File;
 import java.util.Arrays;
 
-/** This class is NOT thread safe. */
+/**
+ * This class is NOT thread safe. Furthermore, the buffers maintained by instances of this class
+ * are model dependent, and are allocated only once during the lifetime of the instance, meaning that
+ * you need to copy the contents of the embeddings buffer when working with model outputs.
+ */
 public class BtContext implements Closeable {
 
   private final int nThreads;
