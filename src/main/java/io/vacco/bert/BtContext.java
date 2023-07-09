@@ -36,6 +36,12 @@ public class BtContext implements Closeable {
     return embedBuffer;
   }
 
+  public float[] embeddingBufferCopy() {
+    var copy = new float[embedBuffer.length];
+    System.arraycopy(embedBuffer, 0, copy, 0, embedBuffer.length);
+    return copy;
+  }
+
   @Override public void close() {
     Bt.bertFree(ctxPtr);
   }
