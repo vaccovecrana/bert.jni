@@ -14,8 +14,7 @@ public class BtRecord {
   public static BtRecord from(float[] embedding, String text) {
     var r = new BtRecord();
     r.text = Objects.requireNonNull(text);
-    r.embedding = new float[embedding.length];
-    System.arraycopy(embedding, 0, r.embedding, 0, embedding.length);
+    r.embedding = embedding;
     return r;
   }
 

@@ -25,6 +25,7 @@ public class BtContext implements Closeable {
     this.ctxPtr = Bt.bertLoadFromFile(modelPath.getAbsolutePath());
     this.tokenBuffer = new int[Bt.bertNMaxTokens(ctxPtr)];
     this.embedBuffer = new float[Bt.bertNEmbd(ctxPtr)];
+    this.tokensRead[0] = 0;
   }
 
   public float[] eval(String sentence) {
@@ -36,9 +37,21 @@ public class BtContext implements Closeable {
     return embedBuffer;
   }
 
-  public float[] embeddingBufferCopy() {
-    var copy = new float[embedBuffer.length];
-    System.arraycopy(embedBuffer, 0, copy, 0, embedBuffer.length);
+  public float[] evalCopy(String sentence) {
+    return copy(eval(sentence));
+  }
+
+  public String[] tokenSymbols() {
+    var ts = new String[tokensRead[0]];
+    for (int i = 0; i < tokensRead[0]; i++) {
+      ts[i] = Bt.bertVocabIdToToken(ctxPtr, tokenBuffer[i]);
+    }
+    return ts;
+  }
+
+  public float[] copy(float[] in) {
+    var copy = new float[in.length];
+    System.arraycopy(in, 0, copy, 0, in.length);
     return copy;
   }
 
