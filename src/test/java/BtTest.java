@@ -61,14 +61,16 @@ public class BtTest {
         var recs = lines.stream()
             .map(txt -> BtRecord.from(bt.evalCopy(txt), txt))
             .collect(Collectors.toList());
-        var qText = "Should I get health insurance?";
+        var qText = "Federal Bureau of Investigation";
         var query = bt.eval(qText);
+
+        System.out.printf("====> [%s :: %s] <====%n", qText, Arrays.toString(bt.tokenSymbols()));
+
         var results = recs.stream()
             .map(rec -> rec.withSimilarity(cosineSimilarity(query, rec.embedding)))
             .sorted(Comparator.comparing(rec -> -rec.similarity))
             .limit(25)
             .collect(Collectors.toList());
-        System.out.printf("====> %s <====%n", qText);
         for (var rec : results) {
           System.out.printf("[%.8f] %s%n", rec.similarity, rec.text);
         }
