@@ -2,7 +2,7 @@
 
 Provides JNI bindings for [bert.cpp](https://github.com/skeskinen/bert.cpp).
 
-Available in [Maven Central](https://mvnrepository.com/artifact/io.vacco.bert).
+Available in [Maven Central](https://mvnrepository.com/artifact/io.vacco.bert/bert.jni).
 
 ```
 implementation("io.vacco.bert:bert.jni:<LATEST_VERSION>>")

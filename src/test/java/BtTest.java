@@ -16,7 +16,7 @@ import static j8spec.J8Spec.*;
 public class BtTest {
 
   public static final File modelPath = new File("/home/jjzazuet/code/bert.cpp/models/multi-qa-MiniLM-L6-cos-v1/ggml-model-f16.bin");
-  public static BtContext bt = new BtContext(modelPath, 4);
+  public static BtContext bt;
 
   public static float cosineSimilarity(float[] vectorA, float[] vectorB) {
     float dotProduct = 0.0f;
@@ -32,6 +32,10 @@ public class BtTest {
 
   static {
     if (!GraphicsEnvironment.isHeadless()) {
+      it("Opens a BERT context", () -> {
+        System.out.println("Opening BERT context");
+        BtTest.bt = new BtContext(modelPath, 4);
+      });
       it("Encodes a sentence into an embedding", () -> {
         var embedding = bt.eval("This is a prompt, it should get tokenized.");
         System.out.println(Arrays.toString(embedding));
